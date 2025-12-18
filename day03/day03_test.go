@@ -1,7 +1,7 @@
-package dayXX_test
+package day03_test
 
 import (
-	"aoc2025/template/dayXX"
+	"aoc2025/day03"
 	"flag"
 	"fmt"
 	"io"
@@ -22,8 +22,8 @@ var tests = []testCase{
 	{
 		name:          "Example 1",
 		inputFilePath: "example_1.txt",
-		expectedP1:    1,
-		expectedP2:    0,
+		expectedP1:    357,
+		expectedP2:    3121910778619,
 	},
 }
 
@@ -50,7 +50,7 @@ func TestSolvePartOne(t *testing.T) {
 			continue
 		}
 		t.Run(tc.name, func(t *testing.T) {
-			p1, err := dayXX.Solve(1, testLogger, tc.inputFilePath)
+			p1, err := day03.Solve(1, testLogger, tc.inputFilePath)
 			if err != nil {
 				t.Fatalf("❌ Part 1 failed to run: %v\n", err)
 				return
@@ -68,7 +68,7 @@ func TestSolvePartTwo(t *testing.T) {
 			continue
 		}
 		t.Run(tc.name, func(t *testing.T) {
-			p2, err := dayXX.Solve(2, testLogger, tc.inputFilePath)
+			p2, err := day03.Solve(2, testLogger, tc.inputFilePath)
 			if err != nil {
 				t.Fatalf("❌ Part 2 failed to run: %v\n", err)
 				return

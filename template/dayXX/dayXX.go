@@ -30,6 +30,8 @@ func SolvePart1(inputFile string, logger *log.Logger) int {
 	}
 	defer f.Close()
 
+	answer := 0
+
 	scanner := bufio.NewScanner(f)
 	i := -1
 	for scanner.Scan() {
@@ -38,7 +40,7 @@ func SolvePart1(inputFile string, logger *log.Logger) int {
 
 		logger.Printf("%d : %s", i, line)
 	}
-	return 1
+	return answer
 }
 
 func SolvePart2(inputFile string, logger *log.Logger) int {
@@ -48,13 +50,15 @@ func SolvePart2(inputFile string, logger *log.Logger) int {
 	}
 	defer f.Close()
 
+	answer := 0
+
 	scanner := bufio.NewScanner(f)
 	i := -1
 	for scanner.Scan() {
 		i++
-		line := scanner.Text()
 
-		logger.Printf("%d : %s", i, line)
+		// line := scanner.Text()
+		// logger.Printf("%d : %s", i, line)
 	}
-	return 1
+	return answer
 }

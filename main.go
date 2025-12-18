@@ -3,6 +3,7 @@ package main
 import (
 	"aoc2025/day01"
 	"aoc2025/day02"
+	"aoc2025/day03"
 	"flag"
 	"fmt"
 	"io"
@@ -17,7 +18,7 @@ type Solver func(int, *log.Logger, ...string) (int, error)
 var solutions = map[int]Solver{
 	1: day01.Solve,
 	2: day02.Solve,
-	// 3: day03.Solve,
+	3: day03.Solve,
 }
 
 // Global logger that will be used across the application for verbose messages.

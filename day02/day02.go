@@ -165,11 +165,11 @@ func SolvePart2(inputFile string, logger *log.Logger) int {
 			ids := strings.Split(idRange, "-") // First ID and Last ID are separated by a dash
 			firstId, err := strconv.Atoi(ids[0])
 			if err != nil {
-				logger.Fatalf("error converting string %d to integer: %v\n", firstId, err)
+				logger.Fatalf("error converting string %s to integer: %v\n", ids[0], err)
 			}
 			lastId, err := strconv.Atoi(ids[1])
 			if err != nil {
-				logger.Fatalf("error converting string %d to integer: %v\n", lastId, err)
+				logger.Fatalf("error converting string %s to integer: %v\n", ids[1], err)
 			}
 
 			// Check if any ID between firstId and lastId inclusive is invalid. If it is then add it to the answer
