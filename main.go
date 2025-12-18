@@ -2,6 +2,7 @@ package main
 
 import (
 	"aoc2025/day01"
+	"aoc2025/day02"
 	"flag"
 	"fmt"
 	"io"
@@ -15,7 +16,7 @@ type Solver func(int, *log.Logger, ...string) (int, error)
 // A map to associate the day number (int) with the corresponding Solve function
 var solutions = map[int]Solver{
 	1: day01.Solve,
-	// 2: day02.Solve,
+	2: day02.Solve,
 	// 3: day03.Solve,
 }
 
