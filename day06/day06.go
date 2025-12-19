@@ -7,6 +7,7 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 func Solve(part int, logger *log.Logger, inputFile ...string) (int, error) {
@@ -118,11 +119,85 @@ func SolvePart2(inputFile string, logger *log.Logger) int {
 
 	scanner := bufio.NewScanner(f)
 	i := -1
+
+	numbersArray := []string{}
+	operationIndexes := []int{}
+	operations := ""
+
+	re := regexp.MustCompile(`[\+\*]`)
 	for scanner.Scan() {
 		i++
-
-		// line := scanner.Text()
-		// logger.Printf("%d : %s", i, line)
+		line := scanner.Text()
+		switch string(line[0]) {
+		case "*", "+":
+			operations = line
+			for _, val := range re.FindAllStringIndex(line, -1) {
+				operationIndexes = append(operationIndexes, val[0])
+			}
+			logger.Printf("Operations: %s", operations)
+			logger.Printf("OperationIndexes: %v", operationIndexes)
+		default:
+			numbersArray = append(numbersArray, line)
+		}
 	}
+
+	// Print for debugging
+	for _, numbers := range numbersArray {
+		logger.Printf("Numbers: %s", numbers)
+	}
+
+	// Loop through each operation. This gives the starting and ending index for the numbers
+	for i := 0; i < len(operationIndexes); i++ {
+		// Get how many digits in the numbers
+		opIndex := operationIndexes[i]
+		digitLength := 0
+		if i == (len(operationIndexes) - 1) {
+			digitLength = len(operations) - opIndex
+		} else {
+			digitLength = operationIndexes[i+1] - opIndex - 1
+		}
+		logger.Printf("DigitLength: %d", digitLength)
+
+		// Get the numbers that we need to operate on
+		numbersToOperate := []int{}
+		for j := 0; j < digitLength; j++ {
+			index := opIndex + j
+			// Create number string
+			numberString := ""
+			for _, numbers := range numbersArray {
+				numberString = numberString + string(numbers[index])
+			}
+			numberString = strings.ReplaceAll(numberString, " ", "") // Remove all spaces from number
+			number, err := strconv.Atoi(numberString)
+			if err != nil {
+				logger.Fatalf("error converting string %s to integer: %v\n", numberString, err)
+			}
+			// Add number to numbersToOperate
+			numbersToOperate = append(numbersToOperate, number)
+		}
+
+		// Operate on each number in numbersToOperate
+		operation := string(operations[opIndex])
+		result := 0
+		for _, number := range numbersToOperate {
+			switch operation {
+			case "*":
+				if result == 0 {
+					result++
+				}
+				result *= number
+			case "+":
+				result += number
+			default:
+				logger.Fatalf("incorrect operation %s found", operation)
+			}
+		}
+
+		// debugging
+		logger.Printf("NumbersToOperate: %v, Op: %s, Result: %d", numbersToOperate, operation, result)
+		answer += result
+
+	}
+
 	return answer
 }
