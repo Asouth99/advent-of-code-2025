@@ -7,6 +7,7 @@ import (
 	"aoc2025/day04"
 	"aoc2025/day05"
 	"aoc2025/day06"
+	"aoc2025/day07"
 	"flag"
 	"fmt"
 	"io"
@@ -25,6 +26,7 @@ var solutions = map[int]Solver{
 	4: day04.Solve,
 	5: day05.Solve,
 	6: day06.Solve,
+	7: day07.Solve,
 }
 
 // Global logger that will be used across the application for verbose messages.
