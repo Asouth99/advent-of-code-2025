@@ -10,6 +10,7 @@ import (
 	"aoc2025/day07"
 	"aoc2025/day08"
 	"aoc2025/day09"
+	"aoc2025/day10"
 	"flag"
 	"fmt"
 	"io"
@@ -22,15 +23,16 @@ type Solver func(int, *log.Logger, ...string) (int, error)
 
 // A map to associate the day number (int) with the corresponding Solve function
 var solutions = map[int]Solver{
-	1: day01.Solve,
-	2: day02.Solve,
-	3: day03.Solve,
-	4: day04.Solve,
-	5: day05.Solve,
-	6: day06.Solve,
-	7: day07.Solve,
-	8: day08.Solve,
-	9: day09.Solve,
+	1:  day01.Solve,
+	2:  day02.Solve,
+	3:  day03.Solve,
+	4:  day04.Solve,
+	5:  day05.Solve,
+	6:  day06.Solve,
+	7:  day07.Solve,
+	8:  day08.Solve,
+	9:  day09.Solve,
+	10: day10.Solve,
 }
 
 // Global logger that will be used across the application for verbose messages.
